@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Fantasy League - Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <h1>College Fantasy League Transactions</h1>
+        <p>Transaction history for the 2025 season</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="standings.html" class="nav-link">Standings</a></li>
+            <li><a href="rosters.html" class="nav-link">Rosters</a></li>
+            <li><a href="transactions.html" class="nav-link active">Transactions</a></li>
+            <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+            <li><a href="faq.html" class="nav-link">Rules FAQ</a></li>
+        </ul>
+    </nav>
+
+    <section class="section">
+        <h2>Recent Transactions</h2>
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Details</th>
+                <th>Approval</th>
+            </tr>
+            <tr class="trade">
+                <td>Aug 8, 2025</td>
+                <td>Trade</td>
+                <td>Matt traded Duke to Georgia for Drake + Butler</td>
+                <td>Approved (5-0)</td>
+            </tr>
+            <tr>
+                <td>Aug 5, 2025</td>
+                <td>Waiver</td>
+                <td>Alex picked up Dayton from waivers</td>
+                <td>Automatic</td>
+            </tr>
+            <tr>
+                <td>Aug 3, 2025</td>
+                <td>Drop</td>
+                <td>Chris dropped Indiana</td>
+                <td>Automatic</td>
+            </tr>
+            <tr class="trade">
+                <td>Jul 28, 2025</td>
+                <td>Trade</td>
+                <td>Taylor traded 2 mid-majors to Alex for Houston</td>
+                <td>Approved (4-1)</td>
+            </tr>
+            <tr>
+                <td>Jul 25, 2025</td>
+                <td>Add</td>
+                <td>Georgia added San Diego State from free agents</td>
+                <td>Automatic</td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="section">
+        <h2>Transaction Rules</h2>
+        <ul>
+            <li><strong>Trades:</strong> Must be approved by majority vote (minimum 3 votes if 5-player league)</li>
+            <li><strong>Waiver Claims:</strong> Processed daily at 12pm ET in reverse standings order</li>
+            <li><strong>Adds/Drops:</strong> Unlimited during season, but conference restrictions apply</li>
+            <li><strong>Trade Deadline:</strong> March 1, 2025 at midnight ET</li>
+        </ul>
+    </section>
+
+    <div class="confidential">
+        <p>Confidential | Copyright © 2025</p>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loading-screen').remove();
+                }, 500);
+            }, 1000);
+        });
+
+        // Smooth page transitions
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.classList.contains('active')) return;
+                
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.querySelector('.loading-screen').style.opacity = '1';
+                document.querySelector('.loading-screen').style.pointerEvents = 'auto';
+                
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 500);
+            });
+        });
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                    link.style.pointerEvents = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

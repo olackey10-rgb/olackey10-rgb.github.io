@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Fantasy League - Rules FAQ</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .faq-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            background: #003366;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: #002244;
+        }
+
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.2em;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 15px 20px;
+            max-height: 500px;
+        }
+
+        .faq-category {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 5px;
+            margin: 30px 0 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <h1>College Fantasy League Rules FAQ</h1>
+        <p>Frequently asked questions about league rules</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="standings.html" class="nav-link">Standings</a></li>
+            <li><a href="rosters.html" class="nav-link">Rosters</a></li>
+            <li><a href="transactions.html" class="nav-link">Transactions</a></li>
+            <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+            <li><a href="faq.html" class="nav-link active">Rules FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="faq-container">
+        <h2 class="faq-category">Draft Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How does the draft work?</div>
+            <div class="faq-answer">
+                <p>We use a snake draft format where the order reverses each round (1-5, 5-1, 1-5, etc.). The draft order is randomly determined just before drafting begins. Each participant has 60 seconds to make their pick.</p>
+                <p>Once a college team is drafted, it's removed from the available pool and cannot be selected by another player.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Why are there conference restrictions?</div>
+            <div class="faq-answer">
+                <p>The conference restrictions (only one team per conference per player) are designed to:</p>
+                <ul>
+                    <li>Encourage diversity in team selection</li>
+                    <li>Prevent one player from loading up on all the top teams from one conference</li>
+                    <li>Make the draft more strategic and research-intensive</li>
+                    <li>Give mid-major programs more relevance in our league</li>
+                </ul>
+                <p>These restrictions are lifted when conference play begins on January 1st.</p>
+            </div>
+        </div>
+        
+        <h2 class="faq-category">Roster Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How many teams can I have on my roster?</div>
+            <div class="faq-answer">
+                <p>The target roster size is 15-25 college teams per player, but you can go slightly under or over this range based on trades and waiver moves.</p>
+                <p>There's no strict penalty for being outside this range, but rosters significantly larger than 25 may be subject to league review to maintain competitive balance.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">When do conference restrictions lift for waivers?</div>
+            <div class="faq-answer">
+                <p>Conference restrictions are lifted when conference play begins on January 1st. After this date:</p>
+                <ul>
+                    <li>You can pick up additional teams from conferences where you already have one team</li>
+                    <li>There are no limits on the number of teams you can have from a single conference</li>
+                    <li>All other waiver rules still apply</li>
+                </ul>
+                <p>This change reflects that conference play creates more differentiation between teams from the same conference.</p>
+            </div>
+        </div>
+        
+        <h2 class="faq-category">Scoring Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How are upsets calculated?</div>
+            <div class="faq-answer">
+                <p>Upsets are defined as:</p>
+                <ul>
+                    <li>An unranked team beating a ranked team (AP or Coaches Poll)</li>
+                    <li>A lower seed beating a higher seed in March Madness</li>
+                </ul>
+                <p>For upset victories, you earn double the regular points for that game. For example, a regular season upset win would be worth 2 points instead of 1, and a March Madness Round of 64 upset would be worth 4 points instead of 2.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Do First Four games count differently?</div>
+            <div class="faq-answer">
+                <p>First Four games are treated like regular March Madness games with these specifics:</p>
+                <ul>
+                    <li>Worth 2 points per win (same as Round of 64)</li>
+                    <li>Don't receive the round multiplier that later rounds get</li>
+                    <li>Can qualify as upsets if they meet the criteria (lower seed beating higher seed)</li>
+                    <li>Count toward your team's total March Madness wins</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="faq-category">Transaction Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How do trades work?</div>
+            <div class="faq-answer">
+                <p>Our trade process:</p>
+                <ol>
+                    <li>Any player can propose a trade to another player</li>
+                    <li>Both parties must agree to the trade terms</li>
+                    <li>The trade is announced to the league</li>
+                    <li>League members have 24 hours to vote</li>
+                    <li>Trades require majority approval to pass (minimum 3 votes in a 5-player league)</li>
+                    <li>Commissioner processes approved trades</li>
+                </ol>
+                <p>Trade deadline is March 1st at midnight ET.</p>
+            </div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What's the waiver wire process?</div>
+            <div class="faq-answer">
+                <p>Waivers work as follows:</p>
+                <ul>
+                    <li>Dropped teams go on waivers for 24 hours</li>
+                    <li>Claims are processed daily at 12pm ET</li>
+                    <li>Priority goes to last-place team first (reverse standings order)</li>
+                    <li>After processing, unclaimed teams become free agents</li>
+                    <li>Free agents can be added immediately without waivers</li>
+                </ul>
+                <p>Note: You can't claim a team if it would violate conference restrictions (before Jan 1st).</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <h2>Need More Help?</h2>
+        <p>Contact the league commissioner at <a href="mailto:commissioner@collegefantasyleague.com" class="page-link">commissioner@collegefantasyleague.com</a> with any additional questions.</p>
+    </section>
+
+    <div class="confidential">
+        <p>Confidential | Copyright © 2025</p>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loading-screen').remove();
+                    
+                    // Animate FAQ items
+                    const items = document.querySelectorAll('.faq-item');
+                    items.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('visible');
+                        }, 100 * index);
+                    });
+
+                    // Add click handlers for FAQ toggles
+                    document.querySelectorAll('.faq-question').forEach(question => {
+                        question.addEventListener('click', function() {
+                            this.parentElement.classList.toggle('active');
+                        });
+                    });
+                }, 500);
+            }, 1000);
+        });
+
+        // Smooth page transitions
+        document.querySelectorAll('.nav-link, .page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.classList.contains('active')) return;
+                
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.querySelector('.loading-screen').style.opacity = '1';
+                document.querySelector('.loading-screen').style.pointerEvents = 'auto';
+                
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 500);
+            });
+        });
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                    link.style.pointerEvents = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

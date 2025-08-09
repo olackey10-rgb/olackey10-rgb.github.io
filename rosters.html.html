@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Fantasy League - Team Rosters</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <h1>College Fantasy League Team Rosters</h1>
+        <p>Current as of August 9, 2025</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="standings.html" class="nav-link">Standings</a></li>
+            <li><a href="rosters.html" class="nav-link active">Rosters</a></li>
+            <li><a href="transactions.html" class="nav-link">Transactions</a></li>
+            <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+            <li><a href="faq.html" class="nav-link">Rules FAQ</a></li>
+        </ul>
+    </nav>
+
+    <section class="section">
+        <h2>Player Rosters</h2>
+        
+        <div class="team-card">
+            <h3>Matt's Teams (18)</h3>
+            <table>
+                <tr>
+                    <th>Team</th>
+                    <th>Conference</th>
+                    <th>Points</th>
+                    <th>Upsets</th>
+                </tr>
+                <tr>
+                    <td>Dayton</td>
+                    <td>Atlantic 10</td>
+                    <td>32</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Indiana</td>
+                    <td>Big Ten</td>
+                    <td>28</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Drake</td>
+                    <td>Missouri Valley</td>
+                    <td>24</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><a href="#" class="page-link">View all 18 teams...</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="team-card">
+            <h3>Georgia's Teams (16)</h3>
+            <table>
+                <tr>
+                    <th>Team</th>
+                    <th>Conference</th>
+                    <th>Points</th>
+                    <th>Upsets</th>
+                </tr>
+                <tr>
+                    <td>Duke</td>
+                    <td>ACC</td>
+                    <td>36</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Butler</td>
+                    <td>Big East</td>
+                    <td>22</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>San Diego State</td>
+                    <td>Mountain West</td>
+                    <td>30</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><a href="#" class="page-link">View all 16 teams...</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="team-card">
+            <h3>Alex's Teams (20)</h3>
+            <table>
+                <tr>
+                    <th>Team</th>
+                    <th>Conference</th>
+                    <th>Points</th>
+                    <th>Upsets</th>
+                </tr>
+                <tr>
+                    <td>Gonzaga</td>
+                    <td>WCC</td>
+                    <td>40</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>Houston</td>
+                    <td>American</td>
+                    <td>34</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>Loyola Chicago</td>
+                    <td>Atlantic 10</td>
+                    <td>18</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><a href="#" class="page-link">View all 20 teams...</a></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2>Available Teams</h2>
+        <p>Teams not currently owned by any player:</p>
+        <ul>
+            <li>Belmont (Missouri Valley)</li>
+            <li>VCU (Atlantic 10)</li>
+            <li>Saint Mary's (WCC)</li>
+            <li>Murray State (Missouri Valley)</li>
+            <li>Davidson (Atlantic 10)</li>
+        </ul>
+        <p><em>Note: Conference restrictions apply when picking up teams</em></p>
+    </section>
+
+    <div class="confidential">
+        <p>Confidential | Copyright © 2025</p>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loading-screen').remove();
+                }, 500);
+            }, 1000);
+        });
+
+        // Smooth page transitions
+        document.querySelectorAll('.nav-link, .page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (this.classList.contains('active')) return;
+                
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                if (!href || href === '#') return;
+                
+                document.querySelector('.loading-screen').style.opacity = '1';
+                document.querySelector('.loading-screen').style.pointerEvents = 'auto';
+                
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 500);
+            });
+        });
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                    link.style.pointerEvents = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

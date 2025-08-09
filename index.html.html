@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Fantasy League - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #003366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <header>
+        <h1>College Fantasy League</h1>
+        <p>8-12 players | $0-$10 buy-in | Total points season</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="nav-link active">Home</a></li>
+            <li><a href="standings.html" class="nav-link">Standings</a></li>
+            <li><a href="rosters.html" class="nav-link">Rosters</a></li>
+            <li><a href="transactions.html" class="nav-link">Transactions</a></li>
+            <li><a href="schedule.html" class="nav-link">Schedule</a></li>
+            <li><a href="faq.html" class="nav-link">Rules FAQ</a></li>
+        </ul>
+    </nav>
+
+    <div class="grid-container">
+        <section class="section">
+            <h2>League Structure</h2>
+            <ul>
+                <li>8-12 people league</li>
+                <li>Season winner takes all buy-in ($0-$10)</li>
+                <li>Total points determine the champion</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Draft Rules</h2>
+            <ul>
+                <li>Random Snake draft format</li>
+                <li>Fast pace with short selection times</li>
+                <li>Teams are removed from board when drafted</li>
+                <li>Only one college per conference per player</li>
+                <li>Emphasis on mid-majors and G5 rosters</li>
+                <li>Research required before drafting</li>
+                <li>In-person draft recommended for maximum fun</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Current Standings Snapshot</h2>
+            <table>
+                <tr>
+                    <th>Rank</th>
+                    <th>Player</th>
+                    <th>Points</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Matt</td>
+                    <td>142</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Georgia</td>
+                    <td>128</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Alex</td>
+                    <td>115</td>
+                </tr>
+            </table>
+            <p><a href="standings.html" class="page-link">View full standings →</a></p>
+        </section>
+
+        <section class="section">
+            <h2>Recent Transactions</h2>
+            <ul>
+                <li>Matt traded Duke to Georgia for Drake + Butler</li>
+                <li>Alex picked up Dayton from waivers</li>
+                <li>Chris dropped Indiana</li>
+            </ul>
+            <p><a href="transactions.html" class="page-link">View all transactions →</a></p>
+        </section>
+    </div>
+
+    <div class="confidential">
+        <p>Confidential | Copyright © 2025</p>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.querySelector('.loading-screen').remove();
+                }, 500);
+            }, 1000);
+        });
+
+        // Smooth page transitions
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.querySelector('.loading-screen').style.opacity = '1';
+                document.querySelector('.loading-screen').style.pointerEvents = 'auto';
+                
+                setTimeout(function() {
+                    window.location.href = href;
+                }, 500);
+            });
+        });
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                    link.style.pointerEvents = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
